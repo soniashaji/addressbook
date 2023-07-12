@@ -1,66 +1,48 @@
 pipeline {
-        agent {
-            label 'master'
-        }
-        tools {
-            maven 'mymaven'
-            jdk 'myjava'
+    agent any
+    tools {
+        maven 'maven-3.6.3'
+    }
+    stages {
+        stage("build jar") {
+            steps {
+                script {
+                    echo "Building The Application"
+                    sh 'mvn package'
+                    
+                }
+            }
         }
     stages {
-
-        stage ('Checkout the code') {
-            steps{
-                git branch: 'main', url: 'https://github.com/devopstrainers1/spring-petclinic.git'
-            }
-        }
-
-      stage ('Parallel block') {
-       parallel {   
-        stage ('Code Validate') {
-            steps{
-                sh """
-                mvn validate
-                """
-            
-        }
-        }
-
-        stage ('Code Compile') {
-            steps{
-               
-                sh """
-                mvn compile
-                """
-            
-        }
-        }
-       }
-      }
-
-        stage ('JUNIT Test') {
-            steps{
-                sh """
-                mvn test
-                """
-            }
-        }
-
-        stage ('Packaging') {
+        stage("build image") {
             steps {
-                sh """
-                mvn package
-                """
-
+                script {
+                    echo "Building The Image"
+                    withCredentials([usernamePassword(credentialsId: 'docker-hub-repo', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
+                        sh 'docker build -t sonia0103/my_repo:adbookapp:1.0 .'
+                        sh "echo $PASSWORD | docker login -u $USERNAME --password-stdin"
+                        sh ' docker push sonia0103/my_repo:adbookapp:1.0'
+                    
+                }
             }
         }
+        stage("Deploy") {
+            steps {
+                script {
+                    echo "Deploying The Application"
+                    
+                }
+            }
+        }
+    }
+    
+    post {
 
-
-      }
-      post {
-
-          always{
-              junit 'target/surefire-reports/**/*.xml'
+         always{
+         
+             junit 'target/surefire-reports/**/*.xml'
+          
           }
-      }   
+      } 
 
 }
