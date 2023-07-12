@@ -1,4 +1,4 @@
-FROM tomcat:9.0
+FROM tomcat:9.0-slim
 RUN mkdir -p /home/java_app
 WORKDIR /home/java_app
 COPY . /home/java_app
