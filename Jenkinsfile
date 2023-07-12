@@ -13,7 +13,7 @@ pipeline {
                 }
             }
         }
-    stages {
+    
         stage("build image") {
             steps {
                 script {
@@ -26,6 +26,7 @@ pipeline {
                 }
             }
         }
+        }
         stage("Deploy") {
             steps {
                 script {
@@ -34,7 +35,7 @@ pipeline {
                 }
             }
         }
-    }
+    
     
     post {
 
@@ -44,5 +45,8 @@ pipeline {
           
           }
       } 
-
+    }
 }
+
+
+    
