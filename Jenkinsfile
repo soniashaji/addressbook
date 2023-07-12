@@ -19,9 +19,9 @@ pipeline {
                 script {
                     echo "Building The Image"
                     withCredentials([usernamePassword(credentialsId: 'docker-hub-repo', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
-                        sh 'docker build -t sonia0103/my_repo:javaapp:1.0 .'
+                        sh 'docker build -t sonia0103/my_repo:adbookapp-1.0 .'
                         sh "echo $PASSWORD | docker login -u $USERNAME --password-stdin"
-                        sh ' docker push sonia0103/my_repo:javaapp:1.0'
+                        sh ' docker push sonia0103/my_repo:adbookapp-1.0'
                     
                 }
             }
