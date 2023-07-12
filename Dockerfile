@@ -1,4 +1,4 @@
-FROM tomcat:9.0
+FROM tomcat:8.0-aqlpine
 RUN mkdir -p /home/java_app
 
 COPY . /home/java_app
