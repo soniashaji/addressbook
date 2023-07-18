@@ -24,7 +24,7 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'docker-hub-repo', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
                         sh 'docker build -t sonia0103/my_repo:addapp-1.0 .'
                         sh "docker login -u $USERNAME -p $PASSWORD"
-                        sh ' docker push sonia0103/my_repo:addapp1-1.0'
+                        sh ' docker push sonia0103/my_repo:addapp-1.0'
 
  
 
