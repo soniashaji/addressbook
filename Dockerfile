@@ -3,5 +3,5 @@ USER 0
 RUN apt-get update && \
     apt-get install -y maven
 COPY  target/*.war /var/lib/jetty/webapps
-EXPOSE 8081
+EXPOSE 8080
 CMD mvn jetty:run
