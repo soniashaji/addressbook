@@ -9,7 +9,7 @@ pipeline {
                 script {
                     echo "Building The Application"
                     sh 'mvn package'
-                    sh 'mvn jetty:run'
+                   
 
                 }
             }
