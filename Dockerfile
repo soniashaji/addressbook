@@ -1,4 +1,4 @@
-FROM tomcat:8.0-alpine
+FROM jetty:9-jre8-openjdk
+COPY --from=build target/*.war /var/lib/jetty/webapps
 EXPOSE 8080
-ADD target/*.war /usr/local/tomcat/webapps/
-CMD [ "catalina.sh", "run" ]
+CMD mvn jetty:run
