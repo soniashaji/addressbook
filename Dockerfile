@@ -11,4 +11,4 @@ RUN apt-get update
 
 COPY target/*.war /var/lib/jetty/webapps
 EXPOSE 8080
-CMD mvn jetty:run
+CMD ["java","-jar","/usr/local/jetty/start.jar"]
