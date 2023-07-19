@@ -8,7 +8,7 @@ ENV PATH "$M2_HOME/bin:$PATH"
 RUN export PATH
 RUN apt-get update
 
-
+USER jetty
 COPY target/*.war /var/lib/jetty/webapps
 EXPOSE 8080
 CMD ["java","-jar","/usr/local/jetty/start.jar"]
