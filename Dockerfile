@@ -1,7 +1,5 @@
-FROM jetty:9.4.51-jre8-eclipse-temurin
+FROM tomcat:8.0-alpine
 
-
-USER jetty
-COPY target/*.war /var/lib/jetty/webapps
+COPY target/*.war /usr/local/tomcat/webapps/
 EXPOSE 8080
-CMD ["java","-jar","/usr/local/jetty/start.jar"]
+ENTRYPOINT ["sh", "/usr/local/tomcat/bin/startup.sh"]
