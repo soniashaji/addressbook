@@ -6,5 +6,4 @@ CMD [ "catalina.sh", "run" ]
 
 
 
-#This is a comment.
 
