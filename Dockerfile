@@ -1,4 +1,4 @@
-FROM jetty:9-jre8-openjdk
+FROM jetty:9.4.51-jre8-eclipse-temurin
 USER 0
 RUN wget https://mirrors.estointernet.in/apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
 RUN tar -xvf apache-maven-3.6.3-bin.tar.gz
